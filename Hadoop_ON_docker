@@ -1,0 +1,9 @@
+$ mkdir hadoop_docker
+$ cd hadoop_docker
+$ git clone https://github.com/m-semnani/bd-infra.git
+$ cd bd-infra
+
+COMMAND FOR DOCKER execution to run the hadoop:
+  a] docker container ls
+  b] docker exec -it <containerID> /bin/bash
+  

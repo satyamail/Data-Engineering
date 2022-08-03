@@ -7,3 +7,20 @@ COMMAND FOR DOCKER execution to run the hadoop:
   a] docker container ls
   b] docker exec -it <containerID> /bin/bash
   
+INSTALLING NIFI ON DOCKER:
+a. docker pull apache/nifi:latest
+b. docker run --name nifi -p 8443:8443 -e NIFI_WEB_HTTPS_PORT='8443' -d apache/nifi:latest
+c. docker logs -f nifi 
+
+# Look for this in the log. It means it has started the nifi server and you can access it.
+	INFO [main] org.apache.nifi.web.server.JettyServer https://4cdc79d1487f:8443/nifi
+	
+  # Scroll up to check these entries in the log. These are default generated username and password for the NIFI UI.
+	Generated Username [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx]
+	Generated Password [xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]
+	
+d. To change the default username and password: 
+	docker run --name nifi -p 8443:8443 -e SINGLE_USER_CREDENTIALS_USERNAME=admin -e SINGLE_USER_CREDENTIALS_PASSWORD=ctsBtRBKHRAx69EqUghvvgEvjnaLjFEB -d apache/nifi:latest
+  
+e. Try to access the link :https://localhost:8443/nifi . Depending upon the setting of your security, you may get "connection is not private" warning. Ignore it and the grant the access.
+f. Enter the username and password when prompted and start working. Cheers..!
